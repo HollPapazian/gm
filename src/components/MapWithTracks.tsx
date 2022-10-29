@@ -13,14 +13,14 @@ export const MapWithTracks = ({
   data,
   isAnimated = true,
 }: {
-  data: TrackLayerData[];
+  data: TrackLayerData;
   isAnimated?: boolean;
 }) => {
   const [time, setTime] = useState(
-    data[0].timestamps[data[0].timestamps.length - 1]
+    data.timestamps[data.timestamps.length - 1]
   );
   // const [interval, setCurrentInterval] = useState(null);
-  const loopLength = data[0].timestamps[data[0].timestamps.length - 1];
+  const loopLength = data.timestamps[data.timestamps.length - 1];
   const animate = () => {
     if (isAnimated) {
       // increment time by "step" on each loop
@@ -43,11 +43,11 @@ export const MapWithTracks = ({
   const layers = [
     new TripsLayer({
       id: "trips",
-      data,
+      data: [data],
       getPath: (d) => d.path,
       getTimestamps: (d) =>
         d.timestamps.map(
-          (timestamp: number) => timestamp - data[0].timestamps[0]
+          (timestamp: number) => timestamp - data.timestamps[0]
         ),
       getColor: (d) => [255, 0, 0],
       opacity: 0.2,
@@ -60,8 +60,8 @@ export const MapWithTracks = ({
   ];
 
   const initState = getInitMapState({
-    latitude: data[0].path[0][1],
-    longitude: data[0].path[0][0],
+    latitude: data.path[0][1],
+    longitude: data.path[0][0],
   });
   return (
     <DeckGL initialViewState={initState} controller={true} layers={layers}>

@@ -1,5 +1,7 @@
-[
-  {
+{
+  "name": "Demo ride",
+  "totalDistance": 5,
+  "trackData":{
     "vendor": 1,
     "path": [
       [
@@ -761,4 +763,4 @@
       462.164
     ]
   }
-]
+}
