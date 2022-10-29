@@ -10,6 +10,8 @@ export function AddTrack() {
         `track-${Math.random()}`,
         JSON.stringify(gpxToTrackLayerData(e.target.result))
       );
+      console.log('load');
+      window.dispatchEvent(new Event("storage"));
     };
   };
   return (

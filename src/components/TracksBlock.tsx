@@ -12,11 +12,19 @@ export const TracksBlock = ({
 }) => {
   const [userTracks, setUserTracks] = useState<FormattedTrackObject[]>([]);
   useEffect(() => {
-    const keys = Object.keys(localStorage);
-    const tracksFromLocalStorage = keys
-      .filter((key) => key.startsWith("track-"))
-      .map((key) => JSON.parse(localStorage[key]));
-    setUserTracks(tracksFromLocalStorage);
+    const getUserTracks = () => {
+      console.log("getUserTracks!!!");
+      const keys = Object.keys(localStorage);
+      const tracksFromLocalStorage = keys
+        .filter((key) => key.startsWith("track-"))
+        .map((key) => JSON.parse(localStorage[key]));
+      setUserTracks(tracksFromLocalStorage);
+    };
+    getUserTracks();
+    window.addEventListener("storage", getUserTracks);
+    return () => {
+      window.removeEventListener("storage", getUserTracks);
+    };
   }, []);
   return (
     <div className={styles["tracks-cards-block"]}>
