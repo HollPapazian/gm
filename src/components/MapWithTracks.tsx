@@ -4,21 +4,58 @@ import { TripsLayer } from "@deck.gl/geo-layers/typed";
 import { MAPBOX_API_KEY, MAPBOX_STYLE } from "../config";
 import { TrackLayerData } from "../types";
 import { getInitMapState } from "../utils";
+import { useEffect, useState } from "react";
 
-export const MapWithTracks = ({ data }: { data: TrackLayerData[] }) => {
+const step = 10;
+const intervalMS = 20;
+let interval: any = null;
+export const MapWithTracks = ({
+  data,
+  isAnimated = true,
+}: {
+  data: TrackLayerData[];
+  isAnimated?: boolean;
+}) => {
+  const [time, setTime] = useState(
+    data[0].timestamps[data[0].timestamps.length - 1]
+  );
+  // const [interval, setCurrentInterval] = useState(null);
+  const loopLength = data[0].timestamps[data[0].timestamps.length - 1];
+  const animate = () => {
+    if (isAnimated) {
+      // increment time by "step" on each loop
+      setTime((t) => (t + step) % loopLength);
+    }
+  };
+
+  useEffect(() => {
+    if (!isAnimated) {
+      clearInterval(interval);
+      return;
+    }
+    // start loop
+    interval = setInterval(animate, intervalMS);
+    // setCurrentInterval(currentInterval);
+
+    return () => clearInterval(interval);
+  }, [isAnimated]);
+
   const layers = [
     new TripsLayer({
       id: "trips",
       data,
       getPath: (d) => d.path,
-      getTimestamps: (d) => d.timestamps,
+      getTimestamps: (d) =>
+        d.timestamps.map(
+          (timestamp: number) => timestamp - data[0].timestamps[0]
+        ),
       getColor: (d) => [255, 0, 0],
       opacity: 0.2,
       widthMinPixels: 3,
       rounded: true,
       shadowEnabled: false,
       fadeTrail: false,
-      currentTime: 400,
+      currentTime: time,
     }),
   ];
 
