@@ -1,14 +1,20 @@
 import { FormattedTrackObject, TrackLayerData } from "../types";
-import style from "./TrackCard.module.scss";
+import styles from "./TrackCard.module.scss";
+
 export const TrackCard = ({
   name,
   totalDistance,
   trackData,
   setTrack,
+  className,
 }: FormattedTrackObject & {
   setTrack: React.Dispatch<React.SetStateAction<TrackLayerData | null>>;
+  className?: string;
 }) => (
-  <button className={style["track-card"]} onClick={() => setTrack(trackData)}>
+  <button
+    className={`${styles["track-card"]} ${className && styles[className]}`}
+    onClick={() => setTrack(trackData)}
+  >
     <div>
       <span>Name</span>
       <span>{name}</span>

@@ -13,7 +13,6 @@ let intervalId: number | undefined;
 
 export const MapWithTracks = ({ data }: { data: TrackLayerData }) => {
   const loopLength = data.timestamps[data.timestamps.length - 1];
-  const mapRef = useRef<MapRef>(null);
   const [time, setTime] = useState(loopLength);
   const [isAnimated, setIsAnimated] = useState(false);
   const [step, setStep] = useState(10);
@@ -64,7 +63,6 @@ export const MapWithTracks = ({ data }: { data: TrackLayerData }) => {
     <>
       <DeckGL initialViewState={initState} controller={true} layers={layers}>
         <Map
-          ref={mapRef}
           mapboxAccessToken={MAPBOX_API_KEY}
           mapStyle={"mapbox://styles/mapbox/outdoors-v11"}
         />

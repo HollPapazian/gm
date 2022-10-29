@@ -28,7 +28,7 @@ export const TracksBlock = ({
   }, []);
   return (
     <div className={styles["tracks-cards-block"]}>
-      <TrackCard {...(demoTrack as FormattedTrackObject)} setTrack={setTrack} />
+      <TrackCard {...(demoTrack as FormattedTrackObject)} setTrack={setTrack} className="track-card--demo"/>
       {userTracks.map((formattedTrack) => (
         <TrackCard
           {...(formattedTrack as FormattedTrackObject)}
