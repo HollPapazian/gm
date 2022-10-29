@@ -1,10 +1,10 @@
 import gpxParser from "gpxparser";
-import { demoGpx } from "../data/demoGpx";
+// import { demoGpx } from "../data/demoGpx";
 import { FormattedTrackObject, TrackLayerData } from "../types";
 
-export const gpxToTrackLayerData = (): FormattedTrackObject => {
+export const gpxToTrackLayerData = (gpxStr: string): FormattedTrackObject => {
   var gpx = new gpxParser(); //Create gpxParser Object
-  gpx.parse(demoGpx); //parse gpx file from string data
+  gpx.parse(gpxStr); //parse gpx file from string data
   // var totalDistance = gpx.tracks[0].distance.total;
   // gpx.tracks[0]
   console.log("gpx.tracks[0]: ", gpx.tracks[0]);
