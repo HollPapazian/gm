@@ -15,7 +15,7 @@ export const getInitMapState = ({
 }): A => ({
   latitude,
   longitude,
-  zoom: 11,
+  zoom:10,
   bearing: 0,
   pitch: 20,
 });

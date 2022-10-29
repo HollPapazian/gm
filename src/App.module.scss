@@ -5,6 +5,11 @@
   align-items: center;
   margin-top: 2rem;
   gap: 2rem;
+  box-sizing: border-box;
+  @media screen and (max-width: 1000px) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 
 .map-wrapper {
@@ -19,4 +24,7 @@
   border-image-slice: 1;
   display: grid;
   place-items: center;
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+  }
 }
