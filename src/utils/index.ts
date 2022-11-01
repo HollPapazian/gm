@@ -1,3 +1,3 @@
 export { getInitMapState } from "./getInitMapState";
 export { gpxToTrackLayerData } from "./gpxToTrackLayerData";
-export { useGetCenter } from "./hooks";
+export { useGetCenter, useGetPlaceByCord } from "./hooks";
