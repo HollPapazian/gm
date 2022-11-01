@@ -8,4 +8,5 @@ export interface FormattedTrackObject {
   name: string;
   trackData: TrackLayerData;
   totalDistance: number;
+  id: number;
 }

@@ -19,10 +19,10 @@ export const MapControls = ({
       {isAnimated ? "Stop Animation" : "Start Animation"}
     </button>
     <button onClick={() => step > 1 && setStep((prev) => prev - 1)}>
-      Speed -
+      Speed - ({step})
     </button>
     <button onClick={() => step < 200 && setStep((prev) => prev + 1)}>
-      Speed +
+      Speed + ({step})
     </button>
   </div>
 );

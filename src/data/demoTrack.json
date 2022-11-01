@@ -1,7 +1,8 @@
 {
   "name": "Demo ride",
   "totalDistance": 5,
-  "trackData":{
+  "id": 12345678,
+  "trackData": {
     "vendor": 1,
     "path": [
       [

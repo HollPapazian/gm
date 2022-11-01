@@ -1,14 +1,17 @@
 import { createContext, ReactNode, useState } from "react";
-import { TrackLayerData } from "../types";
+import { FormattedTrackObject } from "../types";
 
-// const TrackContext = createContext({ track: null, setTrack: () => {} });
+const TrackContext = createContext<{
+  track: FormattedTrackObject | null;
+  setTrack: React.Dispatch<React.SetStateAction<FormattedTrackObject | null>>;
+}>({ track: null, setTrack: () => {} });
 
-// function CountProvider({ children }: { children: ReactNode }) {
-//   const [track, setTrack] = useState<TrackLayerData | null>(null);
-//   const value = { track, setTrack };
-//   return (
-//     <TrackContext.Provider value={value}>{children}</TrackContext.Provider>
-//   );
-// }
+function TrackProvider({ children }: { children: ReactNode }) {
+  const [track, setTrack] = useState<FormattedTrackObject | null>(null);
+  const value = { track, setTrack };
+  return (
+    <TrackContext.Provider value={value}>{children}</TrackContext.Provider>
+  );
+}
 
-// export { CountProvider, TrackContext };
+export { TrackProvider, TrackContext };
