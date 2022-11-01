@@ -6,7 +6,6 @@ function App() {
   const [poiCenter, setPoiCenter] = useState<[number, number] | undefined>(
     undefined
   );
-  console.log("poiCenter: ", poiCenter);
   return (
     <TrackProvider>
       <div className={styles.main}>

@@ -19,14 +19,18 @@ export const POIList = ({
     return () => {
       setPoiCenter(undefined);
     };
-  }, [track, setPoiCenter]);
+  }, [setPoiCenter, track]);
   return (
     <ul className={styles["poi-list"]}>
-      {pois.map((poi) => (
-        <li>
-          <button onClick={() => setPoiCenter(poi.center)}>{poi.name}</button>
-        </li>
-      ))}
+      {pois.length ? (
+        pois.map((poi) => (
+          <li>
+            <button onClick={() => setPoiCenter(poi.center)}>{poi.name}</button>
+          </li>
+        ))
+      ) : (
+        <div>Chose your track or select demo</div>
+      )}
     </ul>
   );
 };
