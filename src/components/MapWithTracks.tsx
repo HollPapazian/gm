@@ -1,14 +1,12 @@
 import { Map } from "react-map-gl";
 import DeckGL from "@deck.gl/react/typed";
 import { TripsLayer } from "@deck.gl/geo-layers/typed";
-import { MAPBOX_API_KEY, MAPBOX_STYLE } from "../config";
+import { MAPBOX_API_KEY, MAPBOX_STYLE, INTERVAL_IN_MS } from "../config";
 import { TrackLayerData } from "../types";
 import { getInitMapState, useGetCenter, useGetPOI } from "../utils";
 import { useCallback, useEffect, useState } from "react";
 import { MapControls } from "./MapControls";
 import { IconLayer } from "@deck.gl/layers/typed";
-
-const INTERVAL_IN_MS = 50;
 
 let intervalId: number | undefined;
 
@@ -76,16 +74,13 @@ export const MapWithTracks = ({
       getPosition: (d) => d.center,
       getSize: (d) => 3,
       getColor: (d) => [255, 0, 0],
-      onClick: (e) => {
-        console.log("e: ", e);
-      },
     }),
   ];
 
   const initState = getInitMapState({
     latitude: mapCenter?.[1] || (center && center.latitude) || 0,
     longitude: mapCenter?.[0] || (center && center.longitude) || 0,
-    zoom: mapCenter ? 15 : 10,
+    zoom: mapCenter ? 18 : 10,
   });
   return (
     <>
