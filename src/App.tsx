@@ -1,15 +1,6 @@
-import { TrackLayerData } from "./types";
 import styles from "./App.module.scss";
-import {
-  TracksBlock,
-  MapWithTracks,
-  MapPlaceholder,
-  TrackProvider,
-  TrackContext,
-  MapBlock,
-  POIList,
-} from "./components";
-import { useContext, useState } from "react";
+import { TracksBlock, TrackProvider, MapBlock, POIList } from "./components";
+import { useState } from "react";
 
 function App() {
   const [poiCenter, setPoiCenter] = useState<[number, number] | undefined>(

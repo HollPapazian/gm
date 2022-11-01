@@ -5,7 +5,7 @@ export const gpxToTrackLayerData = (gpxStr: string): FormattedTrackObject => {
   var gpx = new gpxParser();
   gpx.parse(gpxStr);
   const formattedTrackData = gpx.tracks[0].points.reduce<TrackLayerData>(
-    (trackData, cur: any) => {
+    (trackData, cur) => {
       trackData.path.push([cur.lon, cur.lat]);
       trackData.timestamps.push(new Date(cur.time).getTime() / 1000);
       return trackData;
@@ -22,6 +22,4 @@ export const gpxToTrackLayerData = (gpxStr: string): FormattedTrackObject => {
     name: gpx.tracks[0].name,
     id: Math.random(),
   };
-
-  // return [formattedTrackData];
 };

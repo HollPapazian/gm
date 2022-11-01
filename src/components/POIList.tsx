@@ -19,7 +19,7 @@ export const POIList = ({
     return () => {
       setPoiCenter(undefined);
     };
-  }, [track]);
+  }, [track, setPoiCenter]);
   return (
     <ul className={styles["poi-list"]}>
       {pois.map((poi) => (

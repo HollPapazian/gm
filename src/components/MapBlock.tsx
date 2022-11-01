@@ -1,15 +1,12 @@
 import { TrackLayerData } from "../types";
 import styles from "./MapBlock.module.scss";
 import {
-  TracksBlock,
   MapWithTracks,
   MapPlaceholder,
-  TrackProvider,
-  TrackContext,
-  POIList,
+  TrackContext
 } from "./";
 
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 export const MapBlock = ({ mapCenter }: { mapCenter?: [number, number] }) => {
   const { track } = useContext(TrackContext);

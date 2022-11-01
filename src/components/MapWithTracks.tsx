@@ -3,10 +3,10 @@ import DeckGL from "@deck.gl/react/typed";
 import { TripsLayer } from "@deck.gl/geo-layers/typed";
 import { MAPBOX_API_KEY, MAPBOX_STYLE } from "../config";
 import { TrackLayerData } from "../types";
-import { getInitMapState, useGetCenter } from "../utils";
+import { getInitMapState, useGetCenter, useGetPOI } from "../utils";
 import { useCallback, useEffect, useState } from "react";
 import { MapControls } from "./MapControls";
-import { POIList } from "./POIList";
+import { IconLayer } from "@deck.gl/layers/typed";
 
 const INTERVAL_IN_MS = 50;
 
@@ -44,6 +44,8 @@ export const MapWithTracks = ({
     setTime(data.timestamps[data.timestamps.length - 1]);
   }, [data.timestamps]);
 
+  const pois = useGetPOI(data.path[0][0], data.path[0][1]);
+
   const layers = [
     new TripsLayer({
       id: "trips",
@@ -60,12 +62,30 @@ export const MapWithTracks = ({
       trailLength: loopLength * 0.2,
       currentTime: time,
     }),
+    new IconLayer({
+      id: "icon-layer",
+      data: pois,
+      pickable: true,
+      iconAtlas:
+        "https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/icon-atlas.png",
+      iconMapping: {
+        marker: { x: 0, y: 0, width: 128, height: 128, mask: true },
+      },
+      getIcon: (d) => "marker",
+      sizeScale: 10,
+      getPosition: (d) => d.center,
+      getSize: (d) => 5,
+      getColor: (d) => [255, 0, 0],
+      onClick: (e) => {
+        console.log("e: ", e);
+      },
+    }),
   ];
 
   const initState = getInitMapState({
     latitude: mapCenter?.[1] || (center && center.latitude) || 0,
     longitude: mapCenter?.[0] || (center && center.longitude) || 0,
-    zoom: mapCenter ? 15 : 10,  
+    zoom: mapCenter ? 15 : 10,
   });
   return (
     <>
