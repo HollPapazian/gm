@@ -9,13 +9,15 @@ interface A {
 export const getInitMapState = ({
   latitude,
   longitude,
+  zoom = 10,
 }: {
   latitude: number;
   longitude: number;
+  zoom?: number;
 }): A => ({
   latitude,
   longitude,
-  zoom:10,
+  zoom,
   bearing: 0,
   pitch: 20,
 });

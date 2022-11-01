@@ -6,12 +6,19 @@ import { TrackLayerData } from "../types";
 import { getInitMapState, useGetCenter } from "../utils";
 import { useCallback, useEffect, useState } from "react";
 import { MapControls } from "./MapControls";
+import { POIList } from "./POIList";
 
 const INTERVAL_IN_MS = 50;
 
 let intervalId: number | undefined;
 
-export const MapWithTracks = ({ data }: { data: TrackLayerData }) => {
+export const MapWithTracks = ({
+  data,
+  mapCenter,
+}: {
+  data: TrackLayerData;
+  mapCenter?: [number, number];
+}) => {
   const loopLength = data.timestamps[data.timestamps.length - 1];
   const [time, setTime] = useState(loopLength);
   const [isAnimated, setIsAnimated] = useState(false);
@@ -56,8 +63,9 @@ export const MapWithTracks = ({ data }: { data: TrackLayerData }) => {
   ];
 
   const initState = getInitMapState({
-    latitude: center ? center.latitude : 0,
-    longitude: center ? center.longitude : 0,
+    latitude: mapCenter?.[1] || (center && center.latitude) || 0,
+    longitude: mapCenter?.[0] || (center && center.longitude) || 0,
+    zoom: mapCenter ? 15 : 10,  
   });
   return (
     <>

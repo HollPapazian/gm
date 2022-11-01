@@ -6,28 +6,24 @@ import {
   MapPlaceholder,
   TrackProvider,
   TrackContext,
+  MapBlock,
+  POIList,
 } from "./components";
 import { useContext, useState } from "react";
 
-const MapBlock = () => {
-  const { track } = useContext(TrackContext);
-  return (
-    <div className={styles["map-wrapper"]}>
-      {track ? (
-        <MapWithTracks data={track.trackData as TrackLayerData} />
-      ) : (
-        <MapPlaceholder />
-      )}
-    </div>
-  );
-};
-
 function App() {
+  const [poiCenter, setPoiCenter] = useState<[number, number] | undefined>(
+    undefined
+  );
+  console.log("poiCenter: ", poiCenter);
   return (
     <TrackProvider>
       <div className={styles.main}>
         <TracksBlock />
-        <MapBlock />
+        <div className={styles["map-and-poi-block"]}>
+          <MapBlock mapCenter={poiCenter} />
+          <POIList setPoiCenter={setPoiCenter} />
+        </div>
       </div>
     </TrackProvider>
   );

@@ -1,0 +1,27 @@
+.poi-list {
+  margin: 0;
+  list-style: none;
+  height: 100%;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 5px solid;
+  padding: 5px;
+  border-image-source: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+  border-image-slice: 1;
+  background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+  & button {
+    border: 1px solid black;
+    border-radius: 0.2em;
+    background-color: white;
+    padding: 0.4em;
+    font-weight: 500;
+    padding-left: 0.7em;
+    padding-right: 0.7em;
+    text-align: start;
+    &:active {
+      background-color: #fbc2eb;
+    }
+  }
+}

@@ -13,7 +13,7 @@ export const useGetPlaceByCord = (
       return;
     }
     request<ReversedGeocodeResponse>(
-      `https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?limit=10&types=place&access_token=${MAPBOX_API_KEY}`
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?limit=1&types=place&access_token=${MAPBOX_API_KEY}`
     ).then((placeRes) => setPlace(placeRes.features[0].text));
   }, [latitude, longitude]);
   return place;
