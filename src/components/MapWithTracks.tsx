@@ -72,9 +72,9 @@ export const MapWithTracks = ({
         marker: { x: 0, y: 0, width: 128, height: 128, mask: true },
       },
       getIcon: (d) => "marker",
-      sizeScale: 10,
+      sizeScale: 8,
       getPosition: (d) => d.center,
-      getSize: (d) => 5,
+      getSize: (d) => 3,
       getColor: (d) => [255, 0, 0],
       onClick: (e) => {
         console.log("e: ", e);
