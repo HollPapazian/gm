@@ -24,7 +24,7 @@ export const POIList = ({
     <ul className={styles["poi-list"]}>
       {pois.length ? (
         pois.map((poi) => (
-          <li>
+          <li key={poi.name}>
             <button onClick={() => setPoiCenter(poi.center)}>{poi.name}</button>
           </li>
         ))
